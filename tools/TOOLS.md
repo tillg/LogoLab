@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 ### generate-macos-icons
 
-Generate macOS app icons from SVG logos. Creates PNG files at all required sizes (16-512px) with @2x retina variants.
+Generate macOS app icons and Safari Extension icons from SVG logos. Single command creates all required PNG files for both macOS applications and Safari Web Extensions.
 
 **Usage:**
 
@@ -45,13 +45,19 @@ Generate macOS app icons from SVG logos. Creates PNG files at all required sizes
 - Auto-detects project when run from `logos/<ProjectName>/` directory
 - Automatically selects highest numbered SVG file (e.g., `18_*.svg` over `17_*.svg`)
 - Prompts for selection when multiple SVGs have the same number
-- Generates standard and @2x retina PNG variants
-- Creates comprehensive HOWTO.md with Xcode integration instructions
+- **macOS icons**: Generates standard and @2x retina PNG variants (16-512px)
+- **Safari Extension icons**: Generates web-standard icons (16-384px) for toolbar, menu, and resources
+- Creates comprehensive HOWTO.md files for both platforms
+- Generates manifest-reference.json for Safari Extension integration
 - Configurable via `tools/config.json` (optional)
 
-**Output:** `logos/<ProjectName>/generated/macOS/`
+**Output:**
+- `logos/<ProjectName>/generated/macOS/` - macOS app icons
+- `logos/<ProjectName>/generated/SafariExtension/` - Safari Extension icons
 
-**Details:** See [spec document](Specs/01_GENERATE_FOR_MACOS.md) for implementation details.
+**Details:** See spec documents:
+- [macOS icons spec](Specs/01_GENERATE_FOR_MACOS.md)
+- [Safari Extension icons spec](Specs/02_ICON_FOR_WEB_VIEW/02_ICON_FOR_WEB_VIEW.md)
 
 ---
 

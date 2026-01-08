@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate macOS app icons from SVG logos.
+Generate macOS app icons and Safari Extension icons from SVG logos.
 
-This tool converts SVG files to PNG icons at various sizes required for macOS applications.
+This tool converts SVG files to PNG icons at various sizes required for:
+- macOS applications (AppIcon, LargeIcon)
+- Safari Web Extensions (toolbar icons, extension resources)
 """
 
 import argparse
@@ -23,7 +25,8 @@ except ImportError:
 # Default configuration
 DEFAULT_CONFIG = {
     "icon_sizes": [16, 32, 128, 256, 512],
-    "generate_retina": True
+    "generate_retina": True,
+    "extension_sizes": [16, 19, 32, 38, 48, 64, 96, 128, 256, 384, 512]
 }
 
 
@@ -168,6 +171,41 @@ def generate_icons(svg_path: Path, output_dir: Path, config: dict):
     return generated_files
 
 
+def generate_extension_icons(svg_path: Path, output_dir: Path, config: dict):
+    """
+    Generate Safari Extension icons from the SVG.
+
+    Creates icons at standard web sizes without @2x retina variants.
+    Also copies the source SVG as toolbar-icon.svg.
+    """
+    extension_sizes = config.get("extension_sizes", DEFAULT_CONFIG["extension_sizes"])
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    generated_files = []
+
+    for size in extension_sizes:
+        filename = f"icon-{size}.png"
+        output_path = output_dir / filename
+        print(f"  Generating {filename}...")
+        generate_png(svg_path, output_path, size)
+        generated_files.append((filename, size))
+
+    # Copy source SVG as toolbar-icon.svg
+    toolbar_svg = output_dir / "toolbar-icon.svg"
+    shutil.copy2(svg_path, toolbar_svg)
+    print(f"  Copying toolbar-icon.svg...")
+
+    # Copy icon-384.png as Icon.png for easy copying to Resources/
+    icon_384 = output_dir / "icon-384.png"
+    icon_png = output_dir / "Icon.png"
+    if icon_384.exists():
+        shutil.copy2(icon_384, icon_png)
+        print(f"  Copying Icon.png (from icon-384.png)...")
+
+    return generated_files
+
+
 def create_howto(output_dir: Path, generated_files: list, project_name: str, svg_filename: str):
     """Create HOWTO.md with instructions for adding icons to Xcode."""
     howto_content = f"""# How to Add Icons to Xcode Project
@@ -242,10 +280,120 @@ For Safari Web Extensions, you also need to fill the **LargeIcon** asset (shown 
     print(f"\n✓ Created {howto_path.name}")
 
 
+def create_extension_howto(output_dir: Path, generated_files: list, project_name: str, svg_filename: str):
+    """Create HOWTO.md for Safari Extension icons."""
+    howto_content = f"""# How to Add Safari Extension Icons
+
+## Generated Icons for {project_name}
+
+Source SVG: `{svg_filename}`
+
+## Generated Files
+
+"""
+
+    for filename, size in generated_files:
+        howto_content += f"- `{filename}` - {size}x{size}px\n"
+
+    howto_content += """
+## Usage in Safari Extension
+
+### For Extension Resources/images/
+
+These icons are used in the Safari Extension's UI (toolbar, menu, popup):
+
+1. Copy the required sizes to your extension's `Resources/images/` directory
+2. Reference them in your extension's manifest or code
+
+Common sizes:
+- **icon-16.png** - Toolbar icon (normal displays)
+- **icon-32.png** - Toolbar icon (retina displays)
+- **icon-48.png** - Extension management UI
+- **icon-128.png** - Extension gallery and settings
+
+### For App Resources/Icon.png
+
+The **Icon.png** file (384x384) is ready to copy to:
+- Main app `Resources/Icon.png`
+- Extension preferences/settings display
+- Note: This is a copy of icon-384.png for convenience
+
+### Integration Steps
+
+1. **Copy icons to your project:**
+   ```
+   SafarAI Extension/Resources/images/
+   ├── icon-16.png
+   ├── icon-19.png
+   ├── icon-32.png
+   ├── icon-38.png
+   ├── icon-48.png
+   ├── icon-64.png
+   ├── icon-96.png
+   ├── icon-128.png
+   ├── icon-256.png
+   └── icon-512.png
+
+   SafarAI/Resources/
+   └── Icon.png (ready to copy - 384x384)
+   ```
+
+2. **Update your manifest (if applicable):**
+   See `manifest-reference.json` for icon path structure
+
+3. **Reference in code:**
+   ```swift
+   let icon = NSImage(named: "icon-48")
+   ```
+
+### Toolbar Icon SVG
+
+The **toolbar-icon.svg** file is a copy of your source SVG. Depending on your design:
+- If your icon works well in Safari's toolbar as-is, use it directly
+- If you need a monochrome/outline version for the toolbar, edit this SVG to be black & white
+- Safari toolbar typically uses template icons (single color that adapts to light/dark mode)
+
+### Notes
+
+- Safari Extension icons use web naming convention (icon-{size}.png)
+- No @2x retina variants needed (size handles both standard and retina)
+- All sizes (48-512) are included for different contexts and future compatibility
+- These are separate from the AppIcon and LargeIcon in Assets.xcassets
+"""
+
+    howto_path = output_dir / "HOWTO.md"
+    with open(howto_path, 'w') as f:
+        f.write(howto_content)
+
+    print(f"✓ Created {howto_path.name}")
+
+
+def create_manifest_reference(output_dir: Path, generated_files: list):
+    """Create manifest-reference.json with icon paths."""
+    # Create a reference structure for common web extension manifest formats
+    manifest_data = {
+        "_comment": "Reference structure for Safari Extension icon paths",
+        "icons": {}
+    }
+
+    # Add icon entries
+    for filename, size in generated_files:
+        manifest_data["icons"][str(size)] = f"images/{filename}"
+
+    # Also create a simpler array format
+    manifest_data["icon_files"] = [filename for filename, _ in generated_files]
+
+    manifest_path = output_dir / "manifest-reference.json"
+    with open(manifest_path, 'w') as f:
+        json.dump(manifest_data, f, indent=2)
+
+    print(f"✓ Created {manifest_path.name}")
+
+
 def main():
     """Main entry point for the icon generator."""
     parser = argparse.ArgumentParser(
-        description="Generate macOS app icons from SVG logos",
+        description="Generate macOS app icons and Safari Extension icons from SVG logos",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -257,6 +405,8 @@ Examples:
 
   # Specify project and SVG file
   generate-macos-icons --project SafarAI --svg 18_atomic_orbit.svg
+
+Note: This tool generates both macOS app icons and Safari Extension icons by default.
         """
     )
     parser.add_argument(
@@ -304,31 +454,44 @@ Examples:
         print("\n📁 Setting up output directories...")
         generated_dir = project_dir / 'generated'
         macos_dir = generated_dir / 'macOS'
+        safari_extension_dir = generated_dir / 'SafariExtension'
         generated_dir.mkdir(exist_ok=True)
         macos_dir.mkdir(exist_ok=True)
+        safari_extension_dir.mkdir(exist_ok=True)
 
         # Copy source SVG
         dest_svg = generated_dir / svg_path.name
         shutil.copy2(svg_path, dest_svg)
         print(f"✓ Copied {svg_path.name} to generated/")
-        print(f"✓ Output directory: {macos_dir}")
+        print(f"✓ Output directories: {macos_dir}, {safari_extension_dir}")
 
         # Step 4: Load configuration
         tools_dir = project_root / 'tools'
         config = load_config(tools_dir)
 
-        # Step 5: Generate icons
-        print("\n🎨 Generating PNG icons...")
+        # Step 5: Generate macOS icons
+        print("\n🎨 Generating macOS PNG icons...")
         generated_files = generate_icons(svg_path, macos_dir, config)
-        print(f"✓ Generated {len(generated_files)} icon files")
+        print(f"✓ Generated {len(generated_files)} macOS icon files")
 
-        # Step 6: Create HOWTO
-        print("\n📝 Creating guide...")
+        # Step 6: Create macOS HOWTO
+        print("\n📝 Creating macOS guide...")
         create_howto(macos_dir, generated_files, project_name, svg_path.name)
 
+        # Step 7: Generate Safari Extension icons
+        print("\n🌐 Generating Safari Extension icons...")
+        extension_files = generate_extension_icons(svg_path, safari_extension_dir, config)
+        print(f"✓ Generated {len(extension_files)} extension icon files")
+
+        # Step 8: Create extension HOWTO and manifest
+        print("\n📝 Creating extension guide and manifest...")
+        create_extension_howto(safari_extension_dir, extension_files, project_name, svg_path.name)
+        create_manifest_reference(safari_extension_dir, extension_files)
+
         print(f"\n✅ Success! Icons generated in:")
-        print(f"   {macos_dir}")
-        print(f"\nSee {macos_dir / 'HOWTO.md'} for instructions on adding icons to Xcode.")
+        print(f"   macOS: {macos_dir}")
+        print(f"   Safari Extension: {safari_extension_dir}")
+        print(f"\nSee HOWTO.md files in each directory for integration instructions.")
 
     except KeyboardInterrupt:
         print("\n\nOperation cancelled by user.")

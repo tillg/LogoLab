@@ -9,6 +9,7 @@ My lab for creating logos for different projects.
 
 2. **Generate** - Transform SVG logos into platform-specific assets
    - macOS app icons (PNG files at multiple sizes)
+   - Safari Extension icons (toolbar, menu, resources)
    - Web assets (coming soon)
 
 ## Tools

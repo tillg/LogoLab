@@ -4,7 +4,7 @@ venv/
 env/
 
 # Generated icon files
-logos/*/generated/
+# logos/*/generated/  2026-01-08: Till decided to save then too
 
 # macOS System Files
 .DS_Store

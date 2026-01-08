@@ -67,7 +67,11 @@ logos/SafarAI/generated/
     ├── icon-64.png
     ├── icon-96.png
     ├── icon-128.png
-    ├── icon-384.png              # For Resources/Icon.png
+    ├── icon-256.png
+    ├── icon-384.png
+    ├── icon-512.png
+    ├── Icon.png                  # Copy of icon-384 for Resources/
+    ├── toolbar-icon.svg          # SVG for toolbar (may need B&W edit)
     ├── manifest-reference.json   # Icon paths reference
     └── HOWTO.md
 ```
@@ -75,7 +79,8 @@ logos/SafarAI/generated/
 ### 3. Extension Icon Sizes
 
 All required sizes for Safari Extensions:
-- 16, 19, 32, 38, 48, 64, 96, 128, 384
+- 16, 19, 32, 38, 48, 64, 96, 128, 256, 384, 512
+- Plus: toolbar-icon.svg (copy of source SVG for toolbar use)
 
 ### 4. Implementation Changes
 
@@ -92,10 +97,12 @@ All required sizes for Safari Extensions:
 ```python
 def generate_extension_icons(svg_path, output_dir):
     """Generate Safari Extension icons."""
-    sizes = [16, 19, 32, 38, 48, 64, 96, 128, 384]
+    sizes = [16, 19, 32, 38, 48, 64, 96, 128, 256, 384, 512]
     for size in sizes:
         filename = f"icon-{size}.png"
         generate_png(svg_path, output_dir / filename, size)
+    # Also copy source SVG as toolbar-icon.svg
+    shutil.copy2(svg_path, output_dir / "toolbar-icon.svg")
 ```
 
 ### 5. Configuration
@@ -106,7 +113,7 @@ Optional `tools/config.json` addition for customization:
 {
   "icon_sizes": [16, 32, 128, 256, 512],
   "generate_retina": true,
-  "extension_sizes": [16, 19, 32, 38, 48, 64, 96, 128, 384]
+  "extension_sizes": [16, 19, 32, 38, 48, 64, 96, 128, 256, 384, 512]
 }
 ```
 
