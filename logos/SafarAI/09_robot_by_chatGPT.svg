@@ -1,0 +1,219 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Robot face inspired by a compass">
+  <defs>
+    <!-- Lighting / palette kept close to the original compass look -->
+    <radialGradient id="ringGrad" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ff7c8b"/>
+      <stop offset="55%" stop-color="#ea1f3b"/>
+      <stop offset="100%" stop-color="#9a0d1e"/>
+    </radialGradient>
+
+    <radialGradient id="faceGrad" cx="50%" cy="35%" r="75%">
+      <stop offset="0%" stop-color="#ffe777"/>
+      <stop offset="55%" stop-color="#ffb532"/>
+      <stop offset="100%" stop-color="#ff7f1a"/>
+    </radialGradient>
+
+    <radialGradient id="eyeGrad" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#d9dde1"/>
+      <stop offset="100%" stop-color="#a7adb4"/>
+    </radialGradient>
+
+    <linearGradient id="needleRed" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff6b7c"/>
+      <stop offset="100%" stop-color="#b00e22"/>
+    </linearGradient>
+
+    <linearGradient id="needleWhite" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#c4c9cf"/>
+    </linearGradient>
+
+    <linearGradient id="metalGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2f4f6"/>
+      <stop offset="50%" stop-color="#cdd2d8"/>
+      <stop offset="100%" stop-color="#9aa2aa"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+
+    <clipPath id="faceClip">
+      <circle cx="128" cy="128" r="90"/>
+    </clipPath>
+
+    <!-- Tick marks reused as "robot head rivets" -->
+    <g id="tickMinor">
+      <rect x="127" y="16" width="2" height="10" rx="1" fill="#ffffff" opacity="0.85"/>
+    </g>
+    <g id="tickMajor">
+      <rect x="126" y="14" width="4" height="16" rx="2" fill="#ffffff" opacity="0.95"/>
+    </g>
+
+    <!-- Needle reused for mouth (full) and nose (half) -->
+    <!-- If you already have a compass needle group, replace the paths inside #needle / #halfNeedle with yours. -->
+    <g id="needle">
+      <!-- subtle shadow -->
+      <path d="M-76 0 L0 -18 L76 0 L0 18 Z" fill="#000000" opacity="0.14" transform="translate(2 2)"/>
+      <!-- left (white) half -->
+      <path d="M-76 0 L0 -18 L0 18 Z" fill="url(#needleWhite)"/>
+      <!-- right (red) half -->
+      <path d="M76 0 L0 -18 L0 18 Z" fill="url(#needleRed)"/>
+      <!-- highlight / shade to mimic 3D -->
+      <path d="M74 0 L0 -16 L0 -9 Z" fill="#ffffff" opacity="0.25"/>
+      <path d="M-74 0 L0 16 L0 9 Z" fill="#000000" opacity="0.08"/>
+    </g>
+
+    <g id="halfNeedle">
+      <path d="M56 0 L0 -14 L0 14 Z" fill="#000000" opacity="0.16" transform="translate(2 2)"/>
+      <path d="M56 0 L0 -14 L0 14 Z" fill="url(#needleRed)"/>
+      <path d="M54 0 L0 -12 L0 -6 Z" fill="#ffffff" opacity="0.22"/>
+    </g>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <!-- Optional "ears" to make it read more robot-y -->
+    <g opacity="0.95">
+      <rect x="6" y="92" width="26" height="72" rx="12" fill="url(#ringGrad)" stroke="#8f0b1b" stroke-width="3"/>
+      <rect x="224" y="92" width="26" height="72" rx="12" fill="url(#ringGrad)" stroke="#8f0b1b" stroke-width="3"/>
+      <circle cx="19" cy="116" r="5.5" fill="url(#metalGrad)" stroke="#7c848c" stroke-width="2"/>
+      <circle cx="19" cy="140" r="5.5" fill="url(#metalGrad)" stroke="#7c848c" stroke-width="2"/>
+      <circle cx="237" cy="116" r="5.5" fill="url(#metalGrad)" stroke="#7c848c" stroke-width="2"/>
+      <circle cx="237" cy="140" r="5.5" fill="url(#metalGrad)" stroke="#7c848c" stroke-width="2"/>
+    </g>
+
+    <!-- Head ring -->
+    <circle cx="128" cy="128" r="116" fill="url(#ringGrad)" stroke="#8f0b1b" stroke-width="4"/>
+
+    <!-- Rivet/tick ring -->
+    <g>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(0 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(6 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(12 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(18 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(24 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(30 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(36 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(42 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(48 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(54 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(60 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(66 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(72 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(78 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(84 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(90 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(96 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(102 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(108 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(114 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(120 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(126 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(132 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(138 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(144 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(150 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(156 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(162 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(168 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(174 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(180 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(186 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(192 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(198 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(204 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(210 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(216 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(222 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(228 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(234 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(240 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(246 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(252 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(258 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(264 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(270 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(276 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(282 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(288 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(294 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(300 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(306 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(312 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(318 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(324 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(330 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(336 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(342 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(348 128 128)"/>
+      <use href="#tickMinor" xlink:href="#tickMinor" transform="rotate(354 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(0 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(30 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(60 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(90 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(120 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(150 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(180 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(210 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(240 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(270 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(300 128 128)"/>
+      <use href="#tickMajor" xlink:href="#tickMajor" transform="rotate(330 128 128)"/>
+    </g>
+
+    <!-- Face plate -->
+    <circle cx="128" cy="128" r="90" fill="url(#faceGrad)" stroke="#d36a15" stroke-width="3"/>
+
+    <!-- Glassy highlight, clipped to face -->
+    <g clip-path="url(#faceClip)">
+      <path d="M32 112 C52 62 94 36 142 34 C98 56 74 88 66 122 C61 142 49 152 32 112 Z"
+            fill="#ffffff" opacity="0.18"/>
+      <path d="M72 52 C88 44 106 40 126 40 C98 52 84 64 72 80 Z"
+            fill="#ffffff" opacity="0.12"/>
+    </g>
+
+    <!-- Eyes -->
+    <g>
+      <circle cx="92" cy="110" r="22" fill="url(#eyeGrad)" stroke="#8f0b1b" stroke-width="4"/>
+      <circle cx="164" cy="110" r="22" fill="url(#eyeGrad)" stroke="#8f0b1b" stroke-width="4"/>
+
+      <circle cx="92" cy="112" r="8" fill="#2b2b2b"/>
+      <circle cx="164" cy="112" r="8" fill="#2b2b2b"/>
+
+      <circle cx="88" cy="106" r="3.8" fill="#ffffff" opacity="0.9"/>
+      <circle cx="160" cy="106" r="3.8" fill="#ffffff" opacity="0.9"/>
+    </g>
+
+    <!-- Nose = half needle -->
+    <g transform="translate(128 134) rotate(90)">
+      <use href="#halfNeedle" xlink:href="#halfNeedle"/>
+    </g>
+
+    <!-- Mouth = full needle -->
+    <g transform="translate(128 178) rotate(-4) scale(1.05 1)">
+      <use href="#needle" xlink:href="#needle"/>
+      <!-- "teeth" lines -->
+      <g opacity="0.35">
+        <path d="M-44 -10 V10" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M-28 -12 V12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M-12 -13 V13" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M4 -13 V13" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M20 -12 V12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+        <path d="M36 -10 V10" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </g>
+
+    <!-- Cheek bolts -->
+    <g opacity="0.95">
+      <circle cx="76" cy="156" r="6.5" fill="url(#metalGrad)" stroke="#7c848c" stroke-width="2"/>
+      <circle cx="180" cy="156" r="6.5" fill="url(#metalGrad)" stroke="#7c848c" stroke-width="2"/>
+    </g>
+
+    <!-- Forehead sensor (uses compass "center cap" idea) -->
+    <g>
+      <circle cx="128" cy="76" r="9" fill="url(#metalGrad)" stroke="#7c848c" stroke-width="2"/>
+      <circle cx="125" cy="73" r="3" fill="#ffffff" opacity="0.75"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66.165833mm" height="65.803795mm" viewBox="0 0 66.165833 65.803795">
+  <defs>
+    <linearGradient id="b">
+      <stop offset="0" stop-color="#FB923C"/>
+      <stop offset=".25000015" stop-color="#F59E0B"/>
+      <stop offset=".5000003" stop-color="#F59E0B"/>
+      <stop offset=".75000012" stop-color="#EF4444"/>
+      <stop offset="1" stop-color="#EF4444"/>
+    </linearGradient>
+    <radialGradient id="eyeGradient" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FB923C;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EF4444;stop-opacity:1" />
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="66.165833" height="65.803795" fill="#2A2A2A"/>
+
+  <!-- Left Robot Eye -->
+  <g transform="translate(-8, 0)">
+    <!-- Outer eye housing -->
+    <circle cx="23" cy="31.90" r="13" fill="none" stroke="#cdcdcd" stroke-width="1.5"/>
+
+    <!-- Eye gradient fill -->
+    <circle cx="23" cy="31.90" r="11.5" fill="url(#eyeGradient)"/>
+
+    <!-- Pupil/lens -->
+    <circle cx="23" cy="31.90" r="6" fill="#2A2A2A" opacity="0.3"/>
+
+    <!-- Compass needle inside eye (pointing NE) -->
+    <g transform="translate(23, 31.90) rotate(-45)">
+      <path d="M 0,-4 L 2,0 L 0,1 Z" fill="#EF4444"/>
+      <path d="M 0,4 L -2,0 L 0,-1 Z" fill="#FB923C"/>
+    </g>
+
+    <!-- Highlight/reflection -->
+    <circle cx="25" cy="29.90" r="2.5" fill="#FFFFFF" opacity="0.6"/>
+
+    <!-- Tick marks around eye (like compass) -->
+    <g stroke="#f4f2f3" stroke-width="1" stroke-linecap="round" opacity="0.8">
+      <line x1="23" y1="17.9" x2="23" y2="20.4"/>
+      <line x1="36" y1="31.90" x2="33.5" y2="31.90"/>
+      <line x1="23" y1="45.9" x2="23" y2="43.4"/>
+      <line x1="10" y1="31.90" x2="12.5" y2="31.90"/>
+    </g>
+  </g>
+
+  <!-- Right Robot Eye -->
+  <g transform="translate(8, 0)">
+    <!-- Outer eye housing -->
+    <circle cx="43" cy="31.90" r="13" fill="none" stroke="#cdcdcd" stroke-width="1.5"/>
+
+    <!-- Eye gradient fill -->
+    <circle cx="43" cy="31.90" r="11.5" fill="url(#eyeGradient)"/>
+
+    <!-- Pupil/lens -->
+    <circle cx="43" cy="31.90" r="6" fill="#2A2A2A" opacity="0.3"/>
+
+    <!-- Compass needle inside eye (pointing NE) -->
+    <g transform="translate(43, 31.90) rotate(-45)">
+      <path d="M 0,-4 L 2,0 L 0,1 Z" fill="#EF4444"/>
+      <path d="M 0,4 L -2,0 L 0,-1 Z" fill="#FB923C"/>
+    </g>
+
+    <!-- Highlight/reflection -->
+    <circle cx="45" cy="29.90" r="2.5" fill="#FFFFFF" opacity="0.6"/>
+
+    <!-- Tick marks around eye (like compass) -->
+    <g stroke="#f4f2f3" stroke-width="1" stroke-linecap="round" opacity="0.8">
+      <line x1="43" y1="17.9" x2="43" y2="20.4"/>
+      <line x1="56" y1="31.90" x2="53.5" y2="31.90"/>
+      <line x1="43" y1="45.9" x2="43" y2="43.4"/>
+      <line x1="30" y1="31.90" x2="32.5" y2="31.90"/>
+    </g>
+  </g>
+
+  <!-- Connecting bridge/visor between eyes -->
+  <rect x="26" y="29.90" width="14" height="4" fill="#cdcdcd" opacity="0.4" rx="1"/>
+
+  <!-- Antenna details on top -->
+  <g opacity="0.7">
+    <line x1="15" y1="10" x2="15" y2="15" stroke="#FB923C" stroke-width="1.5" stroke-linecap="round" filter="url(#glow)"/>
+    <circle cx="15" cy="8" r="2" fill="#FB923C" filter="url(#glow)"/>
+
+    <line x1="51" y1="10" x2="51" y2="15" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" filter="url(#glow)"/>
+    <circle cx="51" cy="8" r="2" fill="#EF4444" filter="url(#glow)"/>
+  </g>
+
+  <!-- Robot mouth/interface line -->
+  <g opacity="0.5">
+    <rect x="20" y="52" width="26" height="3" fill="#F59E0B" rx="1.5"/>
+    <line x1="22" y1="53.5" x2="25" y2="53.5" stroke="#2A2A2A" stroke-width="0.5"/>
+    <line x1="27" y1="53.5" x2="30" y2="53.5" stroke="#2A2A2A" stroke-width="0.5"/>
+    <line x1="32" y1="53.5" x2="35" y2="53.5" stroke="#2A2A2A" stroke-width="0.5"/>
+    <line x1="37" y1="53.5" x2="40" y2="53.5" stroke="#2A2A2A" stroke-width="0.5"/>
+  </g>
+
+  <!-- Side panel details -->
+  <g opacity="0.4" stroke="#cdcdcd" stroke-width="1" fill="none">
+    <rect x="3" y="28" width="6" height="8" rx="1"/>
+    <rect x="57" y="28" width="6" height="8" rx="1"/>
+  </g>
+</svg>
