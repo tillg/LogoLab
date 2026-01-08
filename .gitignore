@@ -3,6 +3,9 @@
 venv/
 env/
 
+# Generated icon files
+logos/*/generated/
+
 # macOS System Files
 .DS_Store
 .AppleDouble

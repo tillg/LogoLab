@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Entry point script for generate-macos-icons
+# This script can be called from anywhere in the project
+
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+PROJECT_ROOT="$( cd "$SCRIPT_DIR/.." && pwd )"
+
+# Activate virtual environment if it exists
+if [ -d "$PROJECT_ROOT/.venv" ]; then
+    source "$PROJECT_ROOT/.venv/bin/activate"
+fi
+
+# Run the Python script
+python3 "$SCRIPT_DIR/generate_macos_icons.py" "$@"

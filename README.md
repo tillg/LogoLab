@@ -1,7 +1,26 @@
 # LogoLab
 
-My lab for creating logos for different projects. The standard process consists of
+My lab for creating logos for different projects.
 
-1. Iteratively build a logo in SVG format (needless to stay: With AI help 😜). Naming the different iterations of the SVG file 01_blabla.svg, 02_xyz.svg and so on.
-2. Using diffrent tools (see /tools) to transform the SVG image in whatever is needed by the project. For example there is a tooling to create the image formats & sizes needed for a iOS project.
+## Workflow
 
+1. **Design** - Iteratively create logos in SVG format (with AI help 😜)
+   - Save iterations as `01_initial.svg`, `02_updated.svg`, etc. in `logos/<ProjectName>/`
+
+2. **Generate** - Transform SVG logos into platform-specific assets
+   - macOS app icons (PNG files at multiple sizes)
+   - Web assets (coming soon)
+
+## Tools
+
+See **[tools/TOOLS.md](tools/TOOLS.md)** for setup instructions and available tools.
+
+## Project Structure
+
+```text
+LogoLab/
+├── logos/<ProjectName>/     # Your SVG iterations
+│   └── generated/           # Auto-generated assets (gitignored)
+├── tools/                   # Asset generation tools
+└── requirements.txt         # Python dependencies
+```
