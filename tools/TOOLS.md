@@ -61,6 +61,47 @@ Generate macOS app icons and Safari Extension icons from SVG logos. Single comma
 
 ---
 
+### SVG to SwiftUI Assets
+
+Convert SVG files to formats compatible with SwiftUI (PNG @1x/@2x/@3x or PDF).
+
+**Prerequisites:**
+```bash
+# Install rsvg-convert (part of librsvg)
+brew install librsvg
+```
+
+**Generate PNG at @1x, @2x, @3x scales:**
+
+```bash
+# From the SVG's directory, e.g. logos/TokenExplanation/
+SVG_FILE="05_TokenExplained.svg"
+BASE_NAME="${SVG_FILE%.svg}"
+
+# @1x (base size - adjust width as needed)
+rsvg-convert -w 500 "$SVG_FILE" -o "${BASE_NAME}.png"
+
+# @2x
+rsvg-convert -w 1000 "$SVG_FILE" -o "${BASE_NAME}@2x.png"
+
+# @3x
+rsvg-convert -w 1500 "$SVG_FILE" -o "${BASE_NAME}@3x.png"
+```
+
+**Generate PDF (vector, recommended for SwiftUI):**
+
+```bash
+rsvg-convert -f pdf "$SVG_FILE" -o "${BASE_NAME}.pdf"
+```
+
+**Using in SwiftUI:**
+1. Drag the PNG files (all 3 scales) or PDF into your Xcode Asset Catalog
+2. For PNGs: Xcode auto-detects @2x/@3x suffixes
+3. For PDF: Set "Preserve Vector Data" in the asset inspector for crisp scaling
+4. Reference in SwiftUI: `Image("TokenExplained")`
+
+---
+
 ## Future Tools (TODO)
 
 - Web assets: optimized PNGs, favicons, different sizes

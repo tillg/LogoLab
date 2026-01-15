@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220">
+  <!-- Background -->
+  <rect width="500" height="220" fill="white"/>
+
+  <!-- Main container -->
+  <rect x="10" y="10" width="480" height="200" fill="none" stroke="black" stroke-width="2"/>
+
+  <!-- Header: Context Window -->
+  <rect x="10" y="10" width="480" height="35" fill="#D0D0D0"/>
+  <line x1="10" y1="45" x2="490" y2="45" stroke="black" stroke-width="2"/>
+  <text x="250" y="34" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="bold" fill="black">CONTEXT WINDOW (e.g. 16K tokens)</text>
+
+  <!-- Input Section Box -->
+  <rect x="20" y="55" width="200" height="110" rx="6" fill="#D0D0D0" stroke="black" stroke-width="1"/>
+  <text x="120" y="75" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="black">INPUT</text>
+
+  <!-- Input items -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="black">
+    <text x="35" y="95">• System prompt</text>
+    <text x="35" y="112">• Page content</text>
+    <text x="35" y="129">• Chat history</text>
+    <text x="35" y="146">• Tool definitions</text>
+  </g>
+
+  <!-- Plus sign between sections -->
+  <circle cx="250" cy="110" r="16" fill="white" stroke="black" stroke-width="1.5"/>
+  <text x="250" y="116" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="bold" fill="black">+</text>
+
+  <!-- Output Section Box -->
+  <rect x="280" y="55" width="200" height="110" rx="6" fill="#D0D0D0" stroke="black" stroke-width="1"/>
+  <text x="380" y="75" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="black">OUTPUT</text>
+
+  <!-- Output items -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="black">
+    <text x="295" y="95">• LLM response</text>
+    <text x="295" y="112">• Tool calls</text>
+  </g>
+
+  <!-- Bracket at bottom showing flow from both sections -->
+  <path d="M120 165 L120 177 L250 177" stroke="black" stroke-width="1.5" fill="none"/>
+  <path d="M380 165 L380 177 L250 177" stroke="black" stroke-width="1.5" fill="none"/>
+  <circle cx="250" cy="177" r="4" fill="black"/>
+
+  <!-- Footer box -->
+  <rect x="70" y="185" width="360" height="22" rx="4" fill="#D0D0D0" stroke="black" stroke-width="1"/>
+  <text x="250" y="200" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="black">
+    INPUT + OUTPUT must fit within CONTEXT WINDOW
+  </text>
+</svg>

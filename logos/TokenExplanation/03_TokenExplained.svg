@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 220">
+  <!-- Background -->
+  <rect width="500" height="220" fill="white"/>
+
+  <!-- Main container -->
+  <rect x="10" y="10" width="480" height="200" fill="none" stroke="black" stroke-width="2"/>
+
+  <!-- Header: Context Window -->
+  <line x1="10" y1="45" x2="490" y2="45" stroke="black" stroke-width="2"/>
+  <text x="250" y="34" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="bold" fill="black">CONTEXT WINDOW (e.g. 16K tokens)</text>
+
+  <!-- Input Section -->
+  <text x="120" y="68" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="black">INPUT</text>
+
+  <!-- Input items -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="black">
+    <text x="30" y="92">• System prompt</text>
+    <text x="30" y="112">• Page content</text>
+    <text x="30" y="132">• Chat history</text>
+    <text x="30" y="152">• Tool definitions</text>
+  </g>
+
+  <!-- Plus sign between sections -->
+  <circle cx="250" cy="110" r="16" fill="white" stroke="black" stroke-width="1.5"/>
+  <text x="250" y="116" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="bold" fill="black">+</text>
+
+  <!-- Output Section -->
+  <text x="380" y="68" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="bold" fill="black">OUTPUT</text>
+
+  <!-- Output items -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="black">
+    <text x="280" y="92">• LLM response</text>
+    <text x="280" y="112">• Tool calls</text>
+  </g>
+
+  <!-- Bracket at bottom showing flow from both sections -->
+  <path d="M120 160 L120 175 L250 175" stroke="black" stroke-width="1.5" fill="none"/>
+  <path d="M380 160 L380 175 L250 175" stroke="black" stroke-width="1.5" fill="none"/>
+  <circle cx="250" cy="175" r="4" fill="black"/>
+
+  <!-- Footer message -->
+  <text x="250" y="198" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" fill="black">
+    INPUT + OUTPUT must fit within CONTEXT WINDOW
+  </text>
+</svg>
